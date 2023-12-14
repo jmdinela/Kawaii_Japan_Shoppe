@@ -139,7 +139,7 @@ endwhile;
 								<tr>
 									<th class="text-center">QTY</th>
 									<th class="text-center">UNIT</th>
-									<th class="text-center">Product/Service</th>
+									<th class="text-center">Items</th>
 									<th class="text-center">Cost</th>
 									<th class="text-center">Total</th>
 									<th class="text-center"></th>
