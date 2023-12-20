@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2023 at 12:58 AM
+-- Generation Time: Dec 20, 2023 at 02:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -149,10 +149,10 @@ CREATE TABLE `product_list` (
 --
 
 INSERT INTO `product_list` (`id`, `category_id`, `product`, `description`, `status`, `price`, `date_created`, `date_updated`) VALUES
-(4, 3, 'Plastic Food Storage Containers', '&lt;p&gt;Set of durable containers for storing food.&lt;br&gt;&lt;/p&gt;', 1, 150, '2023-12-12 04:59:03', NULL),
+(4, 3, 'Plastic Food Storage Containers', '&lt;p&gt;Set of durable containers for storing food.&lt;br&gt;&lt;/p&gt;', 2, 150, '2023-12-12 04:59:03', '2023-12-17 23:34:37'),
 (5, 3, 'Plastic Tumblers', '&lt;p&gt;Lightweight and reusable tumblers for beverages.&lt;br&gt;&lt;/p&gt;', 1, 50, '2023-12-12 05:07:06', NULL),
 (6, 3, 'Plastic Dinner Plates', '&lt;p&gt;Sturdy plates suitable for everyday use.&lt;br&gt;&lt;/p&gt;', 1, 80, '2023-12-12 05:07:53', NULL),
-(7, 3, 'Plastic Cutlery Set', '&lt;p&gt;Disposable yet durable cutlery for convenient use.&lt;br&gt;&lt;/p&gt;', 1, 100, '2023-12-12 05:08:27', '2023-12-12 05:08:42'),
+(7, 3, 'Plastic Cutlery Set', '&lt;p&gt;Disposable yet durable cutlery for convenient use.&lt;br&gt;&lt;/p&gt;', 2, 100, '2023-12-12 05:08:27', '2023-12-17 23:34:16'),
 (8, 3, 'Plastic Mixing Bowls', '&lt;p&gt;Nesting bowls for food preparation.&lt;br&gt;&lt;/p&gt;', 1, 120, '2023-12-12 05:09:31', NULL),
 (9, 4, 'Ceramic Dinnerware Set', '&lt;p&gt;Elegant set including plates, bowls, and mugs.&lt;br&gt;&lt;/p&gt;', 1, 500, '2023-12-12 05:10:13', NULL),
 (10, 4, 'Ceramic Flower Vase', '&lt;p&gt;Stylish vase for displaying flowers or decor.&lt;br&gt;&lt;/p&gt;', 1, 250, '2023-12-12 05:10:42', NULL),
