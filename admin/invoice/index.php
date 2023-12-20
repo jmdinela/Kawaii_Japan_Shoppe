@@ -46,7 +46,7 @@
 							<td><?php echo $row['invoice_code'] ?></td>
 							<td><?php echo $row['customer_name'] ?></td>
 							<td>
-								<p class="m-0"><small><b>Invoice Type: </b><?php echo $row['type'] == 1 ? "Sales":"Service" ?></small></p>
+								<p class="m-0"><small><b>Invoice Type: </b><?php echo $row['type'] == 1 ? "Sales":"" ?></small></p>
 								<p class="m-0"><small><b>Item Count: </b> <?php echo number_format($items) ?></small></p>
 								<p class="m-0"><small><b>Total Amount: </b><?php echo number_format($row['total_amount']) ?></small></p>
 							</td>

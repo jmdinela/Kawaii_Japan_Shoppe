@@ -18,8 +18,8 @@ $item_arr = array();
 if(isset($id)){
 if($type == 1)
 	$items = $conn->query("SELECT i.*,p.description,p.id as pid,p.product as `name`,p.category_id as cid FROM invoices_items i inner join product_list p on p.id = i.form_id where i.invoice_id = '{$id}' ");
-else
-	$items = $conn->query("SELECT i.*,s.description,s.id as `sid`,s.`service` as `name`,s.category_id as cid FROM invoices_items i inner join service_list s on s.id = i.form_id where i.invoice_id = '{$id}' ");
+// else
+// 	$items = $conn->query("SELECT i.*,s.description,s.id as `sid`,s.`service` as `name`,s.category_id as cid FROM invoices_items i inner join service_list s on s.id = i.form_id where i.invoice_id = '{$id}' ");
 while($row=$items->fetch_assoc()):
 	$category = $conn->query("SELECT * FROM `category_list` where id = {$row['cid']}");
 	$cat_count = $category->num_rows;
@@ -91,8 +91,8 @@ endwhile;
 								$data_json = array();
 									if($type == 1):
 										$qry2 = $conn->query("SELECT * FROM product_list ");
-									else:
-										$qry2 = $conn->query("SELECT * FROM service_list ");
+									// else
+									// 	$qry2 = $conn->query("SELECT * FROM service_list ");
 									endif;
 									while($row = $qry2->fetch_assoc()):
 										$name = ($type == 1) ? $row['product'] : $row['service'];
@@ -273,7 +273,7 @@ var item_arr = $.parseJSON('<?php echo json_encode($item_arr) ?>');
 			td.addClass('text-center')
 			td.text(qty)
 			td.append("<input type='hidden' name='item_id[]' value='"+item_id+"' />") //item id input
-			td.append("<input type='hidden' name='form_id[]' value='"+form_id+"' />") //item product/service input
+			td.append("<input type='hidden' name='form_id[]' value='"+form_id+"' />") //item name input
 			td.append("<input type='hidden' name='quantity[]' value='"+qty+"' />") //item quantity input
 			td.append("<input type='hidden' name='unit[]' value='"+unit+"' />") //item unit input
 			td.append("<input type='hidden' name='price[]' value='"+price+"' />") //item price input

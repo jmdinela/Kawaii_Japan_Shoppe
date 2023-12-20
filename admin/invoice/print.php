@@ -62,8 +62,8 @@ table th, table td{
         <?php 
         if($type == 1)
             $items = $conn->query("SELECT i.*,p.description,p.id as pid,p.product as `name`,p.category_id as cid FROM invoices_items i inner join product_list p on p.id = i.form_id where i.invoice_id = '{$id}' ");
-        else
-            $items = $conn->query("SELECT i.*,s.description,s.id as `sid`,s.`service` as `name`,s.category_id as cid FROM invoices_items i inner join service_list s on s.id = i.form_id where i.invoice_id = '{$id}' ");
+        // else
+        //     $items = $conn->query("SELECT i.*,s.description,s.id as `sid`,s.`service` as `name`,s.category_id as cid FROM invoices_items i inner join service_list s on s.id = i.form_id where i.invoice_id = '{$id}' ");
         while($row=$items->fetch_assoc()):
             $category = $conn->query("SELECT * FROM `category_list` where id = {$row['cid']}");
             $cat_count = $category->num_rows;
