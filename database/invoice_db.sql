@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2023 at 02:59 PM
+-- Generation Time: Dec 20, 2023 at 04:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -94,7 +94,10 @@ INSERT INTO `invoices_items` (`id`, `invoice_id`, `form_id`, `unit`, `quantity`,
 (28, 12, 44, 'pcs', 2, 250, 500),
 (29, 12, 12, 'pcs', 3, 80, 240),
 (30, 12, 5, 'pcs', 1, 50, 50),
-(31, 12, 40, 'pcs', 1, 12799, 12799);
+(31, 12, 40, 'pcs', 1, 12799, 12799),
+(32, 13, 12, 'pcs', 15, 80, 1200),
+(33, 13, 19, 'pcs', 23, 200, 4600),
+(34, 13, 46, 'pcs', 3, 150, 450);
 
 -- --------------------------------------------------------
 
@@ -125,7 +128,8 @@ INSERT INTO `invoice_list` (`id`, `invoice_code`, `customer_name`, `type`, `sub_
 (9, 'KJS5988278', 'John Moren Dinela', 1, 28633, 12, 32069, 'Remarks for Invoice KJS5988278 transaction', '2023-12-12 07:44:50', NULL),
 (10, 'KJS4892823', 'Renzo Dogoy', 1, 2720, 12, 3046.4, 'Remarks for Invoice KJS4892823 transaction.', '2023-12-12 07:48:22', NULL),
 (11, 'KJS6359016', 'Jake Napay', 1, 15717, 12, 17603, 'Remarks for Invoice KJS6359016 transaction.', '2023-12-12 07:52:55', NULL),
-(12, 'KJS3366457', 'Jay Ar De Guzman', 1, 13589, 12, 15219.7, 'Remarks for Invoice KJS3366457 transaction.', '2023-12-12 07:55:45', NULL);
+(12, 'KJS3366457', 'Jay Ar De Guzman', 1, 13589, 12, 15219.7, 'Remarks for Invoice KJS3366457 transaction.', '2023-12-12 07:55:45', NULL),
+(13, 'KJS9996035', 'Sample Customer', 1, 6250, 12, 7000, 'Remarks for Invoice KJS9996035 transaction', '2023-12-20 22:59:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -194,23 +198,6 @@ INSERT INTO `product_list` (`id`, `category_id`, `product`, `description`, `stat
 (46, 11, 'Drawer Organizers Set', 'Organizers for tidying up drawers.', 1, 150, '2023-12-12 06:32:57', NULL),
 (47, 11, 'Artificial Plants', '&lt;p&gt;Low-maintenance greenery for decor.&lt;br&gt;&lt;/p&gt;', 1, 189, '2023-12-12 06:33:31', NULL),
 (48, 11, 'Bedside Table Lamp', '&lt;p&gt;Illuminating and stylish lamp for bedside tables.&lt;br&gt;&lt;/p&gt;', 1, 250, '2023-12-12 06:36:18', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `service_list`
---
-
-CREATE TABLE `service_list` (
-  `id` int(30) NOT NULL,
-  `category_id` int(30) NOT NULL,
-  `service` varchar(250) NOT NULL,
-  `description` text NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = available, 2 = unavailable',
-  `price` float NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `date_updated` datetime DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -291,12 +278,6 @@ ALTER TABLE `product_list`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `service_list`
---
-ALTER TABLE `service_list`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `system_info`
 --
 ALTER TABLE `system_info`
@@ -316,31 +297,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `category_list`
 --
 ALTER TABLE `category_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `invoices_items`
 --
 ALTER TABLE `invoices_items`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `invoice_list`
 --
 ALTER TABLE `invoice_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product_list`
 --
 ALTER TABLE `product_list`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
--- AUTO_INCREMENT for table `service_list`
---
-ALTER TABLE `service_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `system_info`
