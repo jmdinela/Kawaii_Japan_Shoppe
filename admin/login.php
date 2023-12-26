@@ -6,7 +6,8 @@
   <script>
     start_loader()
   </script>
-  <h1 class="text-center"><?= $_settings->info('name') ?></h1>
+  <img src="../uploads/logo.png" alt="logo" height=20%>
+  <!-- <h1 class="text-center"><?= $_settings->info('name') ?></h1> -->
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline rounded-0 card-maroon rounded-0">

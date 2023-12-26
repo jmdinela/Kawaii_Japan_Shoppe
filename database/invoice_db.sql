@@ -31,7 +31,7 @@ CREATE TABLE `category_list` (
   `id` int(30) NOT NULL,
   `name` varchar(250) NOT NULL,
   `description` text NOT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = product, 2 = service',
+  `type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = product',
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_updated` datetime DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

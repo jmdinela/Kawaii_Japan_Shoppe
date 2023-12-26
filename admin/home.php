@@ -81,15 +81,15 @@
 <section class="content">
     <div class="container-fluid">    
         <div class="row">
-            <!-- Left Column -->
+            
+        <!-- Profit -->
             <div class="col-md-4">
-            <!-- Profit -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title"><b>Profits</b></h3>
                 </div>
                 <div class="card-body">
-                    <canvas id="profitChart" width="400" height="200"></canvas>
+                    <canvas id="profitChart" width="400" height="400"></canvas>
                     <?php
                     // Fetch the profit based on the selected filter
                     $query = "SELECT SUM(total_amount) AS total_sales, SUM(sub_total) AS total_costs
@@ -159,10 +159,8 @@
             updateChart();
             </script>
 
-
-            <!-- Middle Column -->
-            <div class="col-md-4">
             <!-- Most Purchased Items -->
+            <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title"><b>Most Purchased Items</b></h3>
@@ -170,7 +168,7 @@
                 <div class="card-body">
                     <canvas id="mostPurchasedChart" width="400" height="200"></canvas>
                     <?php
-                    // Fetch the top 5 most purchased products
+                    // Fetch the top 5 most purchased items
                     $query = "SELECT product_list.product, SUM(invoices_items.quantity) AS total_quantity
                             FROM invoices_items
                             JOIN product_list ON invoices_items.form_id = product_list.id
@@ -227,15 +225,14 @@
             </div>
             </div>
 
-            <!-- Right Column -->
+            <!-- Top Buyer -->
             <div class="col-md-4">
-                <!-- Top Buyer -->
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"><b>Top Buyer</b></h3>
                     </div>
                     <div class="card-body">
-                        <canvas id="topCustomerChart" width="400" height="200"></canvas>
+                        <canvas id="topCustomerChart" width="400" height="400"></canvas>
                         <?php
                         // Fetch the top 5 customers and their total spent
                         $query = "SELECT customer_name, SUM(total_amount) AS total_spent
