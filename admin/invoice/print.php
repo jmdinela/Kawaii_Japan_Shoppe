@@ -15,7 +15,6 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         }
     }
 }
-$tax_rate = isset($tax_rate) ? $tax_rate : $_settings->info('tax_rate');
 ?>
 <style>
 table th, table td{
@@ -59,7 +58,7 @@ table th, table td{
         </tr>
     </thead>
     <tbody>
-        <?php 
+        <?php
         if($type == 1)
             $items = $conn->query("SELECT i.*,p.description,p.id as pid,p.product as `name`,p.category_id as cid FROM invoices_items i inner join product_list p on p.id = i.form_id where i.invoice_id = '{$id}' ");
         // else
@@ -92,13 +91,9 @@ table th, table td{
             <th class="text-right" id="sub_total"><?php echo number_format($sub_total) ?></th>
         </tr>
         <tr class="bg-foot" style="background-color:#95b3e8 !important;">
-            <th class="text-right" colspan="4">Tax Rate</th>
-            <th class="text-right" id="tax_rate"><?php echo $tax_rate ?>%</th>
-        </tr>
-        <tr class="bg-foot" style="background-color:#95b3e8 !important;">
-            <th class="text-right" colspan="4">Tax</th>
-            <th class="text-right" id="tax"><?php echo number_format($sub_total * ($tax_rate/100) ) ?></th>
-        </tr>
+			<th class="text-right" colspan="4">Shipping Fee</th>
+			<th class="text-right" id="shipping_fee"><?php echo number_format($shipping_fee) ?></th>
+		</tr>
         <tr class="bg-foot" style="background-color:#95b3e8 !important;">
             <th class="text-right" colspan="4">Grand Total</th>
             <th class="text-right" id="gtotal"><?php echo number_format($total_amount) ?></th>

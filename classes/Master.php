@@ -213,12 +213,17 @@ Class Master extends DBConnection {
 		extract($_POST);
 		$data = "";
 		foreach($_POST as $k =>$v){
-			if(!in_array($k,array('id','remarks')) && !is_array($_POST[$k])){
+			if(!in_array($k,array('id', 'weight', 'remarks')) && !is_array($_POST[$k])){
 				if(!empty($data)) $data .=",";
 				if($k == 'price')
 				$v = floatval(str_replace(',','',$v));
 				$data .= " `{$k}`='{$v}' ";
 			}
+		}
+		// Add the following block to handle the weight field
+		if(isset($_POST['weight'])){
+			if(!empty($data)) $data .=", ";
+				$data .= " `weight`='{$_POST['weight']}' ";
 		}
 		if(isset($_POST['remarks'])){
 			if(!empty($data)) $data .=",";

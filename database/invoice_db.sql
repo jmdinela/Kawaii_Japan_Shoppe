@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2023 at 04:05 PM
+-- Generation Time: Jan 15, 2024 at 12:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -72,32 +72,29 @@ CREATE TABLE `invoices_items` (
 --
 
 INSERT INTO `invoices_items` (`id`, `invoice_id`, `form_id`, `unit`, `quantity`, `price`, `total`) VALUES
-(9, 7, 41, 'pcs', 1, 30000, 30000),
-(10, 8, 4, 'pcs', 3, 150, 450),
-(11, 8, 12, 'pcs', 5, 80, 400),
-(12, 8, 45, 'pcs', 1, 335, 335),
-(13, 9, 40, 'pcs', 1, 12799, 12799),
-(14, 9, 39, 'pcs', 1, 15499, 15499),
-(15, 9, 45, 'pcs', 1, 335, 335),
-(16, 10, 26, 'pcs', 4, 150, 600),
-(17, 10, 14, 'pcs', 1, 300, 300),
-(18, 10, 47, 'pcs', 5, 189, 945),
-(19, 10, 42, 'pcs', 1, 875, 875),
-(20, 8, 39, 'pcs', 1, 15499, 15499),
-(21, 8, 41, 'pcs', 1, 30000, 30000),
-(22, 11, 34, 'pcs', 1, 158, 158),
-(23, 11, 43, 'pcs', 1, 500, 500),
-(24, 11, 29, 'pcs', 3, 195, 585),
-(25, 11, 31, 'pcs', 1, 235, 235),
-(26, 11, 22, 'pcs', 8, 180, 1440),
-(27, 11, 40, 'pcs', 1, 12799, 12799),
-(28, 12, 44, 'pcs', 2, 250, 500),
-(29, 12, 12, 'pcs', 3, 80, 240),
-(30, 12, 5, 'pcs', 1, 50, 50),
-(31, 12, 40, 'pcs', 1, 12799, 12799),
-(32, 13, 12, 'pcs', 15, 80, 1200),
-(33, 13, 19, 'pcs', 23, 200, 4600),
-(34, 13, 46, 'pcs', 3, 150, 450);
+(61, 35, 41, 'pcs', 1, 30000, 30000),
+(62, 35, 40, 'pcs', 1, 12799, 12799),
+(63, 35, 45, 'pcs', 1, 335, 335),
+(64, 36, 26, 'pcs', 3, 150, 450),
+(65, 36, 39, 'pcs', 1, 15499, 15499),
+(66, 36, 40, 'pcs', 2, 12799, 25598),
+(67, 37, 41, 'pcs', 1, 30000, 30000),
+(68, 37, 43, 'pcs', 1, 500, 500),
+(69, 37, 42, 'pcs', 1, 875, 875),
+(70, 37, 45, 'pcs', 1, 335, 335),
+(71, 38, 31, 'pcs', 1, 235, 235),
+(72, 38, 30, 'pcs', 1, 25, 25),
+(73, 38, 32, 'pcs', 3, 175, 525),
+(74, 38, 40, 'pcs', 1, 12799, 12799),
+(75, 38, 43, 'pcs', 1, 500, 500),
+(76, 38, 44, 'pcs', 2, 250, 500),
+(77, 39, 48, 'pcs', 1, 250, 250),
+(78, 39, 34, 'pcs', 1, 158, 158),
+(79, 39, 28, 'pcs', 1, 250, 250),
+(80, 39, 42, 'pcs', 1, 875, 875),
+(81, 39, 41, 'pcs', 1, 30000, 30000),
+(82, 40, 39, 'pcs', 1, 15499, 15499),
+(83, 40, 40, 'pcs', 1, 12799, 12799);
 
 -- --------------------------------------------------------
 
@@ -110,8 +107,9 @@ CREATE TABLE `invoice_list` (
   `invoice_code` varchar(100) NOT NULL,
   `customer_name` text NOT NULL,
   `type` tinyint(1) DEFAULT NULL,
+  `weight` varchar(255) DEFAULT NULL,
+  `shipping_fee` decimal(10,2) DEFAULT NULL,
   `sub_total` float NOT NULL,
-  `tax_rate` float NOT NULL,
   `total_amount` float NOT NULL,
   `remarks` text NOT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
@@ -122,14 +120,13 @@ CREATE TABLE `invoice_list` (
 -- Dumping data for table `invoice_list`
 --
 
-INSERT INTO `invoice_list` (`id`, `invoice_code`, `customer_name`, `type`, `sub_total`, `tax_rate`, `total_amount`, `remarks`, `date_created`, `date_updated`) VALUES
-(7, 'KJS1655780', 'Lee Angelo Mollo', 1, 30000, 12, 33600, 'Remarks for Invoice KJS1655780 transaction', '2023-12-12 07:11:15', NULL),
-(8, 'KJS4479096', 'Shenna Mae Cruz', 1, 46684, 12, 52286.1, 'Remarks for Invoice KJS4479096 transaction', '2023-12-12 07:41:55', '2023-12-12 07:49:25'),
-(9, 'KJS5988278', 'John Moren Dinela', 1, 28633, 12, 32069, 'Remarks for Invoice KJS5988278 transaction', '2023-12-12 07:44:50', NULL),
-(10, 'KJS4892823', 'Renzo Dogoy', 1, 2720, 12, 3046.4, 'Remarks for Invoice KJS4892823 transaction.', '2023-12-12 07:48:22', NULL),
-(11, 'KJS6359016', 'Jake Napay', 1, 15717, 12, 17603, 'Remarks for Invoice KJS6359016 transaction.', '2023-12-12 07:52:55', NULL),
-(12, 'KJS3366457', 'Jay Ar De Guzman', 1, 13589, 12, 15219.7, 'Remarks for Invoice KJS3366457 transaction.', '2023-12-12 07:55:45', NULL),
-(13, 'KJS9996035', 'Sample Customer', 1, 6250, 12, 7000, 'Remarks for Invoice KJS9996035 transaction', '2023-12-20 22:59:43', NULL);
+INSERT INTO `invoice_list` (`id`, `invoice_code`, `customer_name`, `type`, `weight`, `shipping_fee`, `sub_total`, `total_amount`, `remarks`, `date_created`, `date_updated`) VALUES
+(35, 'KJS5142289', 'Moren', 1, '1kg-3kg', 155.00, 43134, 43289, 'Remarks for Invoice #KJS5142289 transactions.', '2024-01-15 07:41:43', NULL),
+(36, 'KJS5064341', 'Shenna', 1, '1kg-3kg', 155.00, 41547, 41702, 'Remarks for Invoice #KJS5064341 transactions.', '2024-01-15 07:43:11', NULL),
+(37, 'KJS1681689', 'Lee', 1, '3kg-4kg', 225.00, 31710, 31935, 'Remarks for Invoice #KJS1681689 transactions.', '2024-01-15 07:45:32', NULL),
+(38, 'KJS1472760', 'Jake', 1, '4kg-5kg', 305.00, 14584, 14889, 'Remarks for Invoice #KJS1472760 transactions.', '2024-01-15 07:48:36', NULL),
+(39, 'KJS6247240', 'Jay Ar', 1, '3kg-4kg', 225.00, 31533, 31758, 'Remarks for Invoice #KJS6247240 transactions.', '2024-01-15 07:50:56', NULL),
+(40, 'KJS7723040', 'Renzo', 1, '500g-1kg', 115.00, 28298, 28413, 'Remarks for Invoice #KJS7723040 transactions.', '2024-01-15 07:52:12', NULL);
 
 -- --------------------------------------------------------
 
@@ -303,13 +300,13 @@ ALTER TABLE `category_list`
 -- AUTO_INCREMENT for table `invoices_items`
 --
 ALTER TABLE `invoices_items`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `invoice_list`
 --
 ALTER TABLE `invoice_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `product_list`

@@ -13,7 +13,6 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         }
     }
 }
-$tax_rate = isset($tax_rate) ? $tax_rate : $_settings->info('tax_rate');
 $item_arr = array();
 if(isset($id)){
 if($type == 1)
@@ -85,7 +84,7 @@ endwhile;
 					<div class="col-md-3">
 						<div class="form-group">
 						<label for="form_id" class="control-label">Item</label>
-							<select  id="form_id" class="custom-select custom-select-sm select2">
+							<select id="form_id" class="custom-select custom-select-sm select2">
 								<option selected="" disabled>Select Category First</option>
 								<?php 
 								$data_json = array();
@@ -116,6 +115,21 @@ endwhile;
 						<div class="form-group">
 							<label for="qty" class="control-label">QTY</label>
 							<input type="number" min='1' id="qty"  class="form-control text-right">
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="weight" class="control-label">Shipping WT</label>
+							<select name="weight" id="weight" class="custom-select custom-select-sm select2">
+								<option value="0"></option>
+								<option value="Free">Free Shipping</option>
+								<option value="0g-500g">0g - 500g</option>
+								<option value="500g-1kg">500g - 1 kg</option>
+								<option value="1kg-3kg">1 kg - 3 kg</option>
+								<option value="3kg-4kg">3 kg - 4 kg</option>
+								<option value="4kg-5kg">4 kg - 5 kg</option>
+								<option value="5kg-6kg">5 kg - 6 kg</option>
+							</select>
 						</div>
 					</div>
 					<div class="col-md-2 pb-1">
@@ -154,14 +168,9 @@ endwhile;
 									<th><input type="hidden" name="sub_total" value="0"></th>
 								</tr>
 								<tr>
-									<th class="text-right" colspan="4">Tax Rate</th>
-									<th class="text-right" id="tax_rate"><?php echo $tax_rate ?>%</th>
-									<th><input type="hidden" name="tax_rate" value="<?php echo $tax_rate ?>"></th>
-								</tr>
-								<tr>
-									<th class="text-right" colspan="4">Tax</th>
-									<th class="text-right" id="tax">0</th>
-									<th></th>
+									<th class="text-right" colspan="4">Shipping Fee</th>
+									<th class="text-right" id="shipping_fee"><?php echo $shipping_fee; ?></th>
+									<th><input type="hidden" name="shipping_fee" value="<?php echo $shipping_fee; ?>"></th>
 								</tr>
 								<tr>
 									<th class="text-right" colspan="4">Grand Total</th>
@@ -179,10 +188,7 @@ endwhile;
 							<textarea name="remarks" id="" cols="30" rows="2" class="form-control form no-resize summernote"><?php echo isset($remarks) ? $remarks : ''; ?></textarea>
 						</div>
 					</div>
-				</div>
-				
-				
-				
+				</div>	
 			</form>
 		</div>
 		<div class="card-footer">
@@ -217,20 +223,19 @@ var item_arr = $.parseJSON('<?php echo json_encode($item_arr) ?>');
 	}
 	function calc_total(){
 		var total = 0;
-		var tax_rate = parseFloat('<?php echo $tax_rate ?>') /100;
 		$('#item-list tbody tr').each(function(){
 			var tr = $(this)
 				total += parseFloat(tr.find('[name="total[]"]').val());
 		})
 		$('[name="sub_total"]').val(total)
 		$('#sub_total').text(parseFloat(total).toLocaleString('en-US'))
-		var tax = parseFloat(total) * parseFloat(tax_rate);
-		var gtotal = parseFloat(tax) + parseFloat(total);
-		$('#tax').text(parseFloat(tax).toLocaleString('en-US'))
-		$('#gtotal').text(parseFloat(gtotal).toLocaleString('en-US'))
-		$('[name="total_amount"]').val(gtotal)
 
+		var shippingFee = parseFloat($('#shipping_fee').text().replace(',', ''));
+		var gtotal = parseFloat(total) + shippingFee;
 
+		$('#shipping_fee').text(parseFloat(shippingFee).toLocaleString('en-US'));
+		$('#gtotal').text(parseFloat(gtotal).toLocaleString('en-US'));
+		$('[name="total_amount"]').val(gtotal);
 	}
 	function rem_item(_this){
 		_this.closest('tr').remove();
@@ -319,6 +324,27 @@ var item_arr = $.parseJSON('<?php echo json_encode($item_arr) ?>');
 		})
 		end_loader()
 	}
+	function updateShippingFee() {
+        var selectedWeight = $('#weight').val();
+        var shippingFees = {
+			'Free': 0.00,
+            '0g-500g': 85.00,
+            '500g-1kg': 115.00,
+            '1kg-3kg': 155.00,
+            '3kg-4kg': 225.00,
+            '4kg-5kg': 305.00,
+            '5kg-6kg': 455.00,
+        };
+        var shippingFee = shippingFees[selectedWeight] || 0.00;
+
+        $('#shipping_fee').text(parseFloat(shippingFee).toLocaleString('en-US'));
+    }
+
+    // Bind the updateShippingFee function to the change event of the weight dropdown
+    $('#weight').change(function () {
+        updateShippingFee();
+    });
+
 	$(document).ready(function(){
 		$('.select2').select2()
 		if('<?php echo isset($_GET['id']) ? 1 : 0 ?>' == 0)
@@ -387,10 +413,13 @@ var item_arr = $.parseJSON('<?php echo json_encode($item_arr) ?>');
 				return false;
 			}
 
+			var formData = new FormData($(this)[0]);
+    		formData.append('shipping_fee', $('#shipping_fee').text()); // Add shipping_fee to form data
+
 			start_loader();
 			$.ajax({
 				url:_base_url_+"classes/Master.php?f=save_invoice",
-				data: new FormData($(this)[0]),
+				data: formData,
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -429,4 +458,5 @@ var item_arr = $.parseJSON('<?php echo json_encode($item_arr) ?>');
 		})
         
 	})
+	updateShippingFee();
 </script>

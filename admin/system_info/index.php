@@ -37,10 +37,10 @@
 					<label for="short_name" class="control-label">System Short Name</label>
 					<input type="text" class="form-control form-control-sm" name="short_name" id="short_name" value="<?php echo  $_settings->info('short_name') ?>">
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="tax_rate" class="control-label">Tax Rate (%)</label>
 					<input type="text" class="form-control form-control-sm" name="tax_rate" id="tax_rate" value="<?php echo  $_settings->info('tax_rate') ?>">
-				</div>
+				</div> -->
 			<div class="form-group">
 				<label for="" class="control-label">System Logo</label>
 				<div class="custom-file">
